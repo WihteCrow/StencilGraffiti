@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>camera</title>
+	<script type="text/javascript" src="js/lib/jquery-1.8.2.js"></script>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		#media{
+			height:auto;
+			width:390px;
+			background: rgba(0,0,0,0.1);
+			border-radius: 3px;
+		}
+		#video{
+			padding:0;
+			margin:auto;
+		}
+		#camera{
+			position: absolute;
+			cursor: pointer;top: 10px;
+			left: 20px;
+			padding:5px;
+			transition: all 0.3s ease-out;
+		}
+		#camera:hover{
+			background: #aaa;
+			transition: all 0.3s ease-in;
+		}
+		#canvas{
+			padding:10px;
+		}
+		#input{
+			background: rgba(0,0,0,0.8);
+			color: #fff;
+			font-family: "微软雅黑";
+			text-align: center;
+			line-height: 20px;
+			border:0;
+			margin:auto;
+			margin-left: 10px;
+			display: block;
+			width:360px;
+			padding:3px 10px;
+			cursor: pointer;
+			transition : all 0.3s ease-out;
+		}
+		#input:hover{
+			background: rgba(0,0,0,1);
+			transition: all 0.3s ease-in;
+		}
+		#kill{
+			background: rgba(255,0,0,0.8);
+			color: #fff;
+			width: 20px;
+			height: 20px;
+			font-size: 18px;
+			border-radius: 20px;
+			font-family: "微软雅黑";
+			text-align: center;
+			line-height: 20px;
+			cursor: pointer;
+			transition : all 0.3s ease-out;
+		}
+		#kill:hover{
+			background: rgba(255,0,0,1);
+			transition : all 0.3s ease-in;
+		}
+		#canvas_first{
+			
+		}
+	</style>
+</head>
+<body>
+	<div id="media">
+		<video id="video" width="380" height="270" autoplay></video>
+		<div id="camera"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAASCAYAAABB7B6eAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAa9JREFUeNqc1M8rRFEUwPF5M4MhP8aPIiIS21lQk1Is5ceChZIdOytlI/+A7Ig/gGRhpYiNbKQsrBRFLPzYWJghNH7MjOd76qhr8m6vOfWpmffevefec987juu6AZ8RQhhBpJHJuT+CfsiEDo6wGjYeKMKn8b8Um/jCG2qQ0skjyOIWB9hFNyaN8bWSwGEHM5q9EVc6mUQ9YpjDHQbwoQkjuspDDKNEF9hjJDjFcoAEx653XEoJMYoVxNGBGPZRhzbL+HTYWLEtpO6V6EQ5kijTc7HFiwyssDwgyXsxhW8tkZSxAAksoj3n7P4G20hatviKE3RpqXKN4V5K4TE+IQ89WBI8ao0DFkP49krw+057xbyWxBY72LIdXsbjnlzf8/kRbtgSeO1APqonnwlu8tlBIYp9JojmkyCiX7Kf6MsngcSsvvO2aMZEPmcgEcea7ua/aNKGaC2RY0lwgTNsYwwNOlkrprGOJe2q/84vvegabdrrQyqomrSTyirHtbPKc+84x4L2qBazORi/s9KuC7QfBY3JC1UVBlGt16PallPap+Tas+7wWc8za1Ql8yPAAAzkXGo1lmDtAAAAAElFTkSuQmCC"></div>
+	</div>
+	<script type="text/javascript">
+		window.addEventListener('load',function (){
+                video = document.getElementById("video"),
+                videoObj = { "video": true },
+                errBack = function(error) {
+                    console.log("Video capture error: ", error.code); 
+                };
+            if(navigator.getUserMedia) {
+                navigator.getUserMedia(videoObj, function(stream) {
+                    video.src = stream;
+                    video.play();
+                }, errBack);
+            } else if(navigator.webkitGetUserMedia) {
+                navigator.webkitGetUserMedia(videoObj, function(stream){
+                    video.src = window.webkitURL.createObjectURL(stream);
+                    video.play();
+                }, errBack);
+            }
+            var i = 0;
+            document.getElementById('camera').addEventListener('click',function (){
+            	var canvas = document.createElement('canvas');
+            	canvas.id = 'canvas';
+            	canvas.width = 360;
+            	canvas.height = 270;
+            	var context = canvas.getContext('2d');
+            	context.drawImage(video,0,0,360,270);	
+            	document.getElementById('media').appendChild(canvas);
+            	var input = document.createElement("input");
+            	input.id = "input";
+            	input.type = "button";
+            	input.value = "使用该图像";
+            	document.getElementById('media').appendChild(input);
+            	document.getElementById('input').addEventListener('click',function (){
+            			$.ajax({
+            				type : "post",
+            				url  : "base64.php",
+            				data : {
+            					"urls" : canvas.toDataURL().substring(22),
+            					"name_upload"	: i
+            				},
+            				success : function (data){
+            				},
+            				dataType : 'json'
+            			});
+            			input.value = "已上传";
+            	},false);
+            	++i;
+            	var div = document.createElement('div');
+            	div.id = "kill";
+            	div.innerHTML = "X";
+            	div.style.position = "absolute";
+            	div.style.left = 360+"px";
+            	if(Number(i) == 1)
+            		var top = 278 * i;
+            	else
+            		var top = 300 * i;
+            	div.style.top = top + "px";
+            	document.getElementById('media').appendChild(div);
+            	document.getElementById('kill').addEventListener('click',function (){
+            		$("#canvas, #input, #kill").remove();
+            		i--;
+            	},false);
+            },false);
+		},false);
+	</script>
+</body>
+</html>

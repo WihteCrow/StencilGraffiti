@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>top</title>
+        <meta charset="utf-8">
+        <!--CSS-->
+        <link rel="stylesheet" type="text/css" href="style/top/style.css" />
+        <link rel="stylesheet" type="text/css" href="style/top/logo.css">
+        <!--JQuery library-->
+        <script type="text/javascript" src="js/lib/jquery-1.8.2.js"></script>
+        <!--DIY-->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var toolBA = ['.recover','.recall', '.photo', '.word', '.pigment', '.absorb', '.rubber', '.pen', '.brush', '.pencil','.model','.draggle'];
+                $(".toolBotton").click(function() {
+                    
+                    var ownThis = $(this);
+
+                    for(var i=0; i<toolBA.length; i++){
+                        if($(toolBA[i]).hasClass("toolBottonActive")){
+                            $(toolBA[i]).removeClass("toolBottonActive");
+                            break;
+                        }
+                    }
+                    
+                    ownThis.addClass("toolBottonActive");//清除效果
+                    //判断和操作兄弟页面事件
+                    var num =   ownThis.hasClass("pencil") ? 0 : 
+                                    ownThis.hasClass("brush") ? 1 : 
+                                        ownThis.hasClass("pen") ? 2 :
+                                            ownThis.hasClass("rubber") ? 3 :
+                                                ownThis.hasClass("absorb") ? 4 :
+                                                    ownThis.hasClass("pigment") ? 5 :
+                                                        ownThis.hasClass("word") ? 6 : 
+                                                            ownThis.hasClass("photo") ? 7 : 
+                                                                ownThis.hasClass("draggle") ? 8 : 
+                                                                    ownThis.hasClass("recall")  ? 9 : 
+                                                                        ownThis.hasClass("recover") ? 10 : 
+                                                                            ownThis.hasClass("model") ? 11 : false;
+                    $("#make", parent.document)[0].contentWindow.selectionTool(num);
+                });
+            });
+        </script>
+        <script type="text/javascript">
+
+        </script>
+    </head>
+    <body>
+        <div class="top">
+            <div class="logo">
+                    <img src="images/LOGO.png"/>
+<!--                     <div class='s-top'></div>
+                    <div class='top-add'></div>
+                    <div class='s-bottom'></div>
+                    <div class='bottom-add'></div>
+                    <div class='seven'></div> -->
+            </div>
+           <a title="home" class="index"><!-- --></a>
+            <a title="打印"  class="toolBotton model" rel="0"></a>
+            <a title="返回" class="toolBotton recover" rel="1"></a>
+            <a title="撤消" class="toolBotton recall" rel="2"><!-- --></a> 
+            <a title="拖拽" class="toolBotton draggle" rel="3"><!----></a>
+            <a title="素材库" class="toolBotton photo" rel="4"><!-- --></a>
+            <a title="文字" class="toolBotton word" rel="5"><!-- --></a>
+            <a title="颜料桶" class="toolBotton pigment" rel="6"><!-- --></a>
+            <a title="吸取" class="toolBotton absorb" rel="7"><!-- --></a>
+            <a title="橡皮" class="toolBotton rubber"  data-tool="eraser" rel="8"><!-- --></a>
+            <a title="钢笔" class="toolBotton pen" rel="9"><!-- --></a>
+            <a title="画笔" class="toolBotton brush" rel="10"><!--</a>-->
+            <a title="铅笔" class="toolBotton pencil" rel="11"><!-- --></a>
+          
+        </div>
+    </body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta content="telephone=no" name="format-detection"/>
+        <meta content="email=no" name="format-detection" /><!--移动端禁止数字使用-->
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" /> <!--viewport 控制手机全屏-->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" /><!--隐藏状态栏-->
+        <metahttp-equiv="window-target" content="_top"> <!--防止别人作为一个iFrame调用-->
+        <title>纸膜涂鸦</title>
+        
+        <!--CSS-->
+        <link rel="stylesheet" type="text/css" href="style/layout.css" />
+
+        <!--JS-->
+		<script type="text/javascript" src="js/lib/jquery-1.8.2.js"></script>
+		<script type="text/javascript" src="js/other/picScroll.js"></script>
+        
+        <!-- 设置IFrame的高度 -->
+		<script type="text/javascript">
+			
+		</script>
+    </head>
+
+    <body>
+    	<div id="loadUp"><img src="images/sg_up.png"></div>
+    	<div id="loadDown"><img src="images/sg_down.png"></div>
+    	<div id="loading"><div></div></div>
+    	<div id="hide">
+	    	<script type="text/javascript">
+	    		var _loading = $("#loading div");
+	    		_loading.animate({width:"10%"},100);
+	    	</script>
+	    	<div id="home" style="position: absolute; width: 100%; height: 100%">
+	    		<div id="outer">
+			        <!--头部工具-->
+			        <iframe id="head" class="head" src="top.html"><!-- --></iframe>
+			        <script type="text/javascript">_loading.animate({width:"20%"},100)</script>
+			
+			        <!--3D预览-->
+			     	<iframe id="show" class="left show" src="solid_left.html" scrolling="no"></iframe>
+			        <script type="text/javascript">_loading.animate({width:"40%"},100)</script>
+			
+			        <!--2D制作-->
+			        <iframe id="make" class="right make" src="solid_right.html" scrolling="no"><!-- --></iframe>
+			       <script type="text/javascript">_loading.animate({width:"50%"},100)</script>
+		       </div>
+	      	</div>
+			<!-- /首页 -->
+			
+			<!-- 模型 -->
+			<div id="model" class="panel">
+				<div class="content">
+					<h2>素材库</h2>
+					<p>最近使用</p>
+					<ul id="works">
+						<li><a href="#"><img class="transform" src="model/2D/cube.png" alt="cube"></a></li>
+						<li><a href="#"><img class="transform" src="model/2D/cuboid.png" alt="cuboid"></a></li>
+						<li><a href="#"><img class="transform" src="model/2D/foldityboy.png" alt="people"></a></li>
+					</ul>
+					<p>全部</p>
+					<ul id="works">
+						<li><a href="#"><img class="transform" src="model/2D/heart.png"></a></li>
+						<li><a href="#"><img class="transform" src="model/2D/house.png"></a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- /模型 -->
+			<script type="text/javascript">_loading.animate({width:"70%"},100)</script>
+			<!-- 作品 -->
+			<div id="myModel" class="panel">
+				<div class="content">
+					<h2>个人中心</h2>
+					<ul id="works">
+						<li><a href="#"><img class="transform" src="model/2D/cube.png"></a></li>
+						<li><a href="#"><img class="transform" src="model/2D/cuboid.png"></a></li>
+						<li><a href="#"><img class="transform" src="model/2D/foldityboy.png"></a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- /作品 -->
+			<script type="text/javascript">_loading.animate({width:"90%"},100)</script>
+			<!-- 帮助 -->
+			<div id="help" class="panel">
+				<div class="content">
+					<h2>帮助</h2>
+					<ul><img src="images/mainpartintroduce.png" id="scoll_photo"></ul>
+				</div>
+			</div>
+			<!-- /帮助 -->
+			
+			<!-- nav -->
+			<div id="header">
+				<ul id="navigation">
+					<li><a id="link-home" href="#home">工作台</a></li>
+					<li><a id="link-model" href="#model">素材</a></li>
+					<li><a id="link-myModel" href="#myModel">作品</a></li>
+					<li><a id="link-help" href="#help">帮助</a></li>
+				</ul>
+			</div>
+		<!-- /nav -->
+	</div>
+	<div id="draggable" class="circle_cover" style="display:none;">
+		<a href="#"><img class="circle" src="./images/white.jpg" /></a>
+	</div><!--圆点-->
+	<div class="bar" style="display:none;">	
+		<table>
+			<tr><td><a class="home" href="#home">工作台</a></td><td><a href="#model">模型</a></td><td><a href="#myModel">作品</a></td></tr>
+			<tr><td></td><td></td><td></td></tr>
+			<tr><td><a href="#help">帮助</a></td><td><a class="2d" href="#home">2D</a></td><td><a id="3d" href="#">3D</a></td></tr>
+		</table>
+	</div><!--菜单-->
+	<div id="cover" style="position:absolute;top:0px;left:0px;display:none;z-index:97;"></div><!--透明蒙层-->
+
+	<script type="text/javascript" src="js/lib/jquery.ui.js"></script>
+	<script type="text/javascript" src="js/lib/touchdraggable.js"></script>
+
+	<script type="text/javascript">
+		function mobile_init(){	//若是手机端，进行如下初始化操作
+			$("#draggable").show();
+			$("#header").hide();	//隐藏左侧的导航条
+			$("#draggable").draggable({ snap:"#outer",scroll: false });		//拖拽事件
+			var width = $(window).width(),
+				height = $(window).height();
+			$("#cover").css({"width":width,"height":height});	//设置蒙层的宽度高度等于浏览器可视区域的宽和高
+			var top = window.innerHeight/2;
+			var left = window.innerWidth/2;
+			$(".bar").css("top",top - $(".bar").height()/2);	//设置导航面板居中
+			$(".bar").css("left",left - $(".bar").width()/2);
+			
+			$(".content h2").css("font-size","3em");	//修改页面标题文字大小
+			$("#head").contents().find(".top a").css("margin","3px 2px");//修改工具栏工具的间隔
+			
+			$("#works img").css("width","140px");
+			$(".content").css("left","10%");
+		}
+		if($(window).width() < 600){
+			mobile_init();
+		}
+		$("#draggable").click(function(){
+			$("#cover").show();
+			$(".bar").show();
+			$("#draggable").hide();
+			return false;
+		});
+		$("#cover").click(function(){
+			$("#cover").hide();
+			$(".bar").hide();
+			$("#draggable").show();
+			return false;
+		});
+		$("#3d").click(function(){
+			$("#show").show().css({"float":"none","width":"100%"});
+			$("#make").hide();
+		});
+		
+		$(".2d").click(function(){
+			$("#show").hide();
+			$("#make").show().css({"float":"none","width":"100%"});
+		});
+
+		$(".home").click(function(){
+			$("#show").show().css({"width":"30%","float":"left"});
+			$("#make").show().css({"width":"70%","float":"right"});
+		});
+
+
+		function setHeight(){
+			$("#show,#make").attr("height", $(window).height() - 49);
+			$("#loadUp img , #loadDown img").css("left", (window.innerWidth-300)/2 + "px");
+
+			$("#scoll_photo").css("width",window.innerWidth/2+"px");
+			$("#works > li > a").find('img').css("width",window.innerWidth/8+"px");
+			$("#works > li").find('img').css("width",window.innerWidth/8+"px");
+		}
+		$(window).bind('resize', setHeight);
+		
+		setHeight();
+
+		$(".transform").click(function (){
+			var _transform = $(this).attr("alt");
+			$("#navigation").find('li').find('a').animate({width:"52px"},300);
+			$("#show", parent.document)[0].contentWindow.changeModel(_transform);
+			$("#show", parent.document)[0].contentWindow.changeArgument(_transform);
+			$("#make", parent.document)[0].contentWindow.changeModels(_transform);
+		});
+
+		$("#loadUp, #loadDown").css("height", $(window).height()/2+"px");
+
+		$("#link-home").click(function(){
+			$("#link-home").animate({width: "42px"});
+			$("#link-model, #link-myModel, #link-help").animate({width: "28px"});
+		});
+		$("#link-model, #link-myModel, #link-help").click(function(){
+			$("#link-home").animate({width: "158px"});
+			$("#link-model, #link-myModel, #link-help").animate({width: "158px"});
+		});
+		
+
+
+
+		_loading.animate({width:"100%"},function(){
+			$("#loadUp").animate({height:"0"},"slow");
+			$("#loading").animate({top:"0"},"slow",function(){
+				$("#loading , #loadUp img").remove();
+			});
+			$("#loadDown").animate({height:"0"},"slow", function(){
+				$("#hide").show();
+				$("#loadDown img").remove();
+			});
+		});
+
+	</script>
+    </body>
+</html>

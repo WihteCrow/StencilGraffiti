@@ -1,0 +1,131 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+        <meta content="email=no" name="format-detection" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <meta content="telephone=no" name="format-detection" />
+		<title>2D</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		
+		<!--main css-->
+		<link type="text/css" rel="stylesheet" href="style/right/main.css">
+		<link type="text/css" rel="stylesheet" href="style/right/farbtastic.css" />	
+		<!--jQuery-->
+		<script type="text/javascript" src="js/lib/jquery-1.8.2.js"></script>
+		<script type="text/javascript" src="js/lib/jquery.touchy.js"></script>
+		<script type="text/javascript" src="js/lib/quo.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				$('#picker').farbtastic('#color');
+				$("#color").bind('touchdown',function (){
+					$("#picker").css("display","block");
+				});
+				$("#color").click(function() {
+					var le = $("#color").offset().left;
+					var to = $("#color").offset().top;
+					$(".farbtastic").css("right", "100px");
+					$(".farbtastic").css("top", to + 50 + "px");
+					var no = $("#picker").css("display");
+					if (no == 'none')
+						$('#picker').fadeIn(100);
+					else
+						$('#picker').fadeOut(100);
+
+				});
+			});
+			/**
+			  * 刷新及其关闭时删除111.jpg
+			  */
+			window.onbeforeunload = function(event){
+			    event = event || window.event;
+			    $.ajax({
+			    	type 	: 'POST',
+			    	url 	: 'delect.php',
+			    	success : function (data){
+			    				console.log(data);
+			    	},
+			    	dataType:"json"
+			    });
+			    return "您要残忍离开么？";
+			}
+
+		</script>
+		<script type="text/javascript">$("#loading div").animate({width:"40%"})</script>
+	</head>
+	<body>
+		<div id="body">
+			<div id="all">
+				<div id="people_add">		
+					<div id="people_add_left">
+						<div class="take_photo"><!----></div>
+						<div class="upload_photo"><!----></div>
+					</div>
+					<div id="people_add_right"><!----></div>
+				</div>
+			</div>
+			
+			<div id="color"><!----></div>
+			<div id="picker"><!----></div>
+			
+			<textarea id="input" autofocus="autofocus" placeholder = "输入完成后直接用鼠标在画布上进行绘画即可" ></textarea>						
+			
+			<!--画笔大小-->
+			<input type="range" name="points" min="1" max="10" class="pain" step = "1" value="3" />
+			
+			<!--第一个显示2D的图层-->
+			<div id="main_div">
+				<canvas id="InterCanvas" class="draw" width="667" height="600"><!-- --></canvas>
+			</div>
+
+			<!--图层背景显示[重要]-->
+
+			
+			<!--第二个制作贴图用的图片的图层-->
+			<canvas id="InterCanvasTwo"><!----></canvas>
+			<ul id="list">
+				<li>删除选中</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+            (function(){
+                
+                var handleTouchyPinch = function (e, $target, data) {
+                    var scale = data.scale;
+                    $target.css({'webkitTransform':'scale(' + scale + ',' + scale + ')'});
+                }
+                $('#InterCanvas').bind('touchy-pinch', handleTouchyPinch);      
+            })();
+		</script>
+
+
+		<script type="text/javascript" src="js/lib/dra.js"></script>
+		<script type="text/javascript" src="js/lib/fabric.js"></script>
+		<script type="text/javascript" src="js/lib/jquery.ui.js"></script>
+		<script type="text/javascript" src="js/lib/touchdraggable.js"></script>
+		<script type="text/javascript" src="js/lib/farbtastic.js"></script>
+		<script type="text/javascript" src="js/other/tools.js"></script>
+
+		<script type="text/javascript" >			
+			var tools = new Tools.publicMmethods();
+			function selectionTool(num){
+				switch(num){
+					case 0 : tools.pencile(); break;
+					case 1 : tools.brush();	break;
+					case 2 : tools.pen(); break;
+					case 3 : tools.rubber(); break;
+					case 4 : tools.absorb(); break;
+					case 5 : tools.pigments(); break;
+					case 6 : tools.word(); break;
+					case 7 : tools.photo();break;
+					case 8 : tools.draggable();break;
+					case 9 : tools.undo();break;
+					case 10: tools.redo();break;
+					case 11 : tools.download();break;
+				}
+			}
+		</script>
+	</body>
+</html>
