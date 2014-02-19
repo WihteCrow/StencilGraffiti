@@ -1,0 +1,84 @@
+/*
+ * import
+ * -------------------------------------------------------------------------------------------------------------
+ */
+
+
+ /*
+ * 统一页面标签
+ * -------------------------------------------------------------------------------------------------------------
+ */
+html,body,div,span,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,address,img,q,s,samp,small,dl,dt,dd,ol,ul,li,form,label,table,tbody,tr,th,td{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+ol,ul,li{
+    list-style: none;
+}
+body{
+    font-family: "Microsoft YaHei", Tahoma, Helvetica, SimSun, sans-serif;
+    background:#2c3031;
+}
+
+/*
+ * tools
+ * -------------------------------------------------------------------------------------------------------------
+ */
+.top{
+    height:46px;
+}
+.toolBotton{
+    float:right;
+    width:40px;
+    height:40px;
+    display:block;
+    overflow:hidden;
+    position:relative;
+    cursor: pointer;
+    background: url(../../images/location.png) no-repeat;
+    margin: 3px 4px;
+}
+.model{
+	background-position: -440px 0;
+	}
+.recover{
+    background-position: -400px 0;
+    }
+.recall{
+    background-position: -360px 0;
+}
+.draggle{
+    background-position: -320px 0;
+}
+.photo{
+    background-position: -280px 0;
+}
+.word{
+	background-position: -240px 0;
+}
+.pigment{
+	background-position: -200px 0;
+}
+.absorb{
+	background-position: -160px 0;
+}
+.rubber{
+    background-position: -120px 0;
+}
+.pen{
+    background-position: -80px 0;
+}
+.brush{
+    background-position: -40px 0;
+}
+.pencil{
+    background-position: -0px 0;
+}
+.toolBottonActive{
+    background-position-y:-40px;
+}

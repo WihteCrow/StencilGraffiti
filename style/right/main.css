@@ -1,0 +1,488 @@
+* {
+    margin: 0;
+    padding: 0;
+    zoom: 1;
+}
+
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+img {
+    border: 0;
+}
+
+body {
+    background: #25271E;
+}
+
+h2 {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 30px;
+    padding: 10px 0px;
+    font-family: "Microsoft YaHei", Tahoma, Helvetica, SimSun, sans-serif;
+}
+
+#people_add {
+    position: absolute;
+    width: 75%;
+    height: 150px;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0px;
+    right: 80px;
+    z-index: 9999;
+}
+
+#people_add_left {
+    float: left;
+    height: 150px;
+    width: 15%;
+    border-right: 2px solid #fff;
+}
+
+#people_add_right {
+    float: right;
+    height: 150px;
+    width: 84.5%;
+    overflow: auto;
+    -Webkit-overflow-scrolling: touch;
+}
+
+.take_photo {
+    float: left;
+    height: 75px;
+    width: 100%;
+    background: url(../../photo/11.png) no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.upload_photo {
+    float: left;
+    height: 75px;
+    width: 100%;
+    background: url(../../photo/13.png) no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+#picker {
+    display: none;
+    z-index: 9999999;
+}
+
+#del {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    z-index: 999;
+    bottom: 0;
+    right: 0;
+    background: url("./photo/del.png");
+}
+
+#del:hover {
+    background: url("./photo/del1.png");
+}
+
+.farbtastic {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    cursor: move;
+    z-index: 10005;
+}
+
+.font {
+    position: absolute;
+    z-index: 999;
+    top: 50px;
+    left: 0px;
+    width: 149px;
+    height: 500px;
+}
+
+#drag {
+    width: 130px;
+    height: 530px;
+    position: absolute;
+    margin-left: 0px;
+    margin-top: 0px;
+    z-index: 99;
+    display: none;
+    right: 10px;
+    bottom: 0px;
+    overflow: visible;
+}
+
+.shadow {
+    position: absolute;
+    z-index: 1000;
+    margin-left: 1000px;
+    margin-top: 50px;
+}
+
+.gay {
+    height: 30px;
+    width: 50px;
+    position: absolute;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 1);
+    margin-left: 670px;
+    margin-top: 20px;
+    color: #FFF;
+    border: 0;
+}
+
+.pain {
+    position: absolute;
+    margin-top: 20px;
+    z-index: 999999;
+}
+
+#input {
+    position: absolute;
+    z-index: 1000;
+    font-size: 15px;
+    width: 180px;
+    height: 110px;
+    right: 10px;
+    top: 20px;
+    padding-left: 5px;
+    border-radius: 3px;
+    border: 0px;
+    line-height: 20px;
+    display: none;
+    resize: none;
+}
+
+#input_buttom {
+    position: absolute;
+    z-index: 1000;
+    width: 50px;
+    height: 20px;
+    right: 10px;
+    top: 130px;
+    color: black;
+    text-align: center;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    font-size: 10px;
+    line-height: 20px;
+    cursor: pointer;
+    display: none;
+
+}
+
+#input_buttom:hover {
+    box-shadow: 1px 1px 10px #aaa;
+}
+
+.draw {
+    cursor: url(../../images/cursor.gif), auto;
+}
+
+.d {
+    height: 50px;
+    width: 50px;
+    z-index: 999;
+}
+
+.eraser1 {
+    cursor: url(../../images/color_circle.png), auto;
+}
+
+#ifame {
+    position: absolute;
+    width: 450px;
+    height: 550px;
+    margin-left: 10%;
+    top: 30px;
+    margin-right: auto;
+    overflow: auto;
+    z-index: 9999;
+}
+
+#bor {
+    border: 0px;
+    width: 420px;
+    height: 500px;
+    border-radius: 10px;
+}
+
+#people_add {
+    display: none;
+}
+
+.img_div {
+    width: 60px;
+    height: 60px;
+    float: left;
+}
+
+.drsMoveHandle {
+    cursor: move;
+    display: inline;
+    line-height: 75px;
+    margin: 8px;
+}
+
+.alixixi {
+    position: absolute;
+    z-index: 1003 !important;
+}
+
+.drsMoveHandle1 {
+    height: 20px;
+    cursor: move;
+}
+
+.dragresize {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    font-size: 1px;
+    background: #EEE;
+    border: 1px solid #333;
+}
+
+.dragresize-tl {
+    top: -8px;
+    left: -8px;
+    cursor: nw-resize;
+}
+
+.dragresize-tm {
+    top: -8px;
+    left: 50%;
+    margin-left: -4px;
+    cursor: n-resize;
+}
+
+.dragresize-tr {
+    top: -8px;
+    right: -8px;
+    cursor: ne-resize;
+}
+
+.dragresize-ml {
+    top: 50%;
+    margin-top: -4px;
+    left: -8px;
+    cursor: w-resize;
+}
+
+.dragresize-mr {
+    top: 50%;
+    margin-top: -4px;
+    right: -8px;
+    cursor: e-resize;
+}
+
+.dragresize-bl {
+    bottom: -8px;
+    left: -8px;
+    cursor: sw-resize;
+}
+
+.dragresize-bm {
+    bottom: -8px;
+    left: 50%;
+    margin-left: -4px;
+    cursor: s-resize;
+}
+
+.dragresize-br {
+    bottom: -8px;
+    right: -8px;
+    cursor: se-resize;
+}
+
+.corner {
+    background: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 0 0 0px 90px / 0 0 0 30px;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    position: absolute;
+    box-shadow: 5px 2px 8px #000;
+    overflow: hidden;
+    -webkit-transition: all 0.3s linear 0s;
+    -moz-transition: all 0.3s linear 0s;
+    -o-transition: all 0.3s linear 0s;
+    -ms-transition: all 0.3s linear 0s;
+    transition: all 0.3s linear 0s;
+}
+
+.corner:after {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    content: "";
+    top: -15px;
+    left: -82px;
+    border-radius: 90px 90px 0px 0 / 40px 40px 0 0;
+    z-index: 1;
+    -webkit-transform: rotate(77deg);
+    -moz-transform: rotate(77deg);
+    -o-transform: rotate(77deg);
+    -ms-transform: rotate(77deg);
+    transform: rotate(77deg);
+}
+
+@-webkit-keyframes notices {
+    0% {
+        top: 0px;
+    }
+    50% {
+        top: 10px;
+    }
+    100% {
+        top: 0px;
+    }
+}
+
+@-moz-keyframes notices {
+    0% {
+        top: 0px;
+    }
+    50% {
+        top: 10px;
+    }
+    100% {
+        top: 0px;
+    }
+}
+
+@-o-keyframes notices {
+    0% {
+        top: 0px;
+    }
+    50% {
+        top: 10px;
+    }
+    100% {
+        top: 0px;
+    }
+}
+
+@-ms-keyframes notices {
+    0% {
+        top: 0px;
+    }
+    50% {
+        top: 10px;
+    }
+    100% {
+        top: 0px;
+    }
+}
+
+@keyframes notices {
+    0% {
+        top: 0px;
+    }
+    50% {
+        top: 10px;
+    }
+    100% {
+        top: 0px;
+    }
+}
+
+#corner {
+    position: absolute !important;
+    z-index: 93;
+    right: 0 !important;
+    -moz-transform: rotate(0deg); /* FF3.5+ */
+    -o-transform: rotate(0deg); /* Opera 10.5 */
+    -webkit-transform: rotate(0deg); /* Saf3.1+, Chrome */
+    cursor: pointer;
+}
+
+#color {
+    position: absolute;
+    z-index: 9999999;
+    width: 45px;
+    height: 45px;
+    right: 0px;
+    border-radius: 0px 0px 0px 50px;
+    background: rgba(27, 55, 161, 1);
+    cursor: pointer;
+}
+
+/*调节画笔大小的样式*/
+input[type="range"] {
+    -webkit-appearance: none !important;
+    -webkit-box-shadow: 0 1px 0 0px #2c3031, 0 1px 0 #060607 inset, 0px 2px 10px 0px black inset, 1px 0px 2px rgba(0, 0, 0, 0.4) inset, 0 0px 1px rgba(0, 0, 0, 0.6) inset;
+    background-color: #272728;
+    border-radius: 15px;
+    width: 120px;
+    margin-left: 3px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    cursor: default;
+    top: 1px;
+    height: 20px;
+    width: 20px;
+    background: none repeat scroll 0 0 #fcfcfc;
+    border-radius: 15px;
+    -webkit-box-shadow: 0 -1px 1px black inset;
+}
+
+#InterCanvas {
+    position: relative;
+    background: url(../../photo/people.png) no-repeat;
+    z-index: 9990;
+    top: 0;
+    width: 667px;
+    height: 600px;
+}
+
+#InterCanvasTwo {
+    position: absolute;
+    display: none;
+}
+
+#main_div {
+    top: 0px;
+    position: relative;
+    left: 0px;
+    width: 667px;
+    height: 600px;
+    margin: auto;
+    padding: 0px;
+}
+
+.upper-canvas {
+    z-index: 999;
+}
+
+#list {
+    position: absolute;
+    background: #F5F5F5;
+    color: #000;
+    left: 0;
+    top: 0;
+    display: none;
+    list-style: none;
+    width: 100px;
+    height: 20px;
+    font-family: "微软雅黑";
+    z-index: 9999999;
+    text-align: center;
+    line-height: 20px;
+    font-size: 15px;
+    border: 1px solid #aaa;
+}
+
+#list li:hover {
+    background: #E2DADA;
+    cursor: pointer;
+}
